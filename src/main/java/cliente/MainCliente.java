@@ -79,6 +79,7 @@ public class MainCliente {
 				
 				score += JogarBatalha(c, nome, b);
 				
+				System.out.println("Seu score atual é de: " + score);
 				System.out.println("Deseja jogar novamente?(Use S para Sim ou N para Não)");
 				
 				Boolean resp = null;
@@ -109,7 +110,6 @@ public class MainCliente {
 		System.out.println("A batalha se inicia com " + nome + " tendo " + b.getParticipantes()[0].getPdv() + " de vida,");
 		System.out.println("e com " + monstro + " tendo " + b.getParticipantes()[1].getPdv() + " de vida.");
 		
-		
 		String[] nomes = new String[] {nome, monstro};
 		t = null;
 		do {
@@ -132,6 +132,10 @@ public class MainCliente {
 		waitInput();
 		for(int i = 0; i < 2; i++) {
 			int index = order[i];
+			if(i == 1 && t.getPdvFinal()[index] <= 0) {
+				System.out.println(nomes[index] + " está morto!!");
+				break;
+			}
 			System.out.println(nomes[index] + " ataca!");
 			waitInput();
 			int dano = t.getDanos()[index];
